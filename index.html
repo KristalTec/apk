@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI APK Builder Pro</title>
     <style>
-        /* هەمان دیزاینی پێشوو */
         :root {
             --primary: #6366f1;
             --primary-hover: #4f46e5;
@@ -58,11 +57,11 @@
     </div>
 
     <script>
-        // --- ڕێکخستنەکانی سێرڤەر (دەبێت پڕیان بکەیتەوە) ---
-        const GITHUB_USERNAME = 'ناوی_ئەکاونتەکەت'; 
-        const GITHUB_REPO = 'ناوی_ڕیپۆزیتۆرییەکەت'; 
-        const GITHUB_TOKEN = 'تۆکنی_گیت_هابەکەت_لێرە_دابنێ'; // پێویستە لە گیت هاب دروستی بکەیت
-        const WORKFLOW_FILENAME = 'build.yml'; // ناوی فایلی ئاکشنەکە
+        // --- ڕێکخستنەکانی سێرڤەر ---
+        const GITHUB_USERNAME = 'ناوی_ئەکاونتەکەت'; // پێویستە ئەمە بگۆڕیت بۆ ناوی ئەکاونتەکەت
+        const GITHUB_REPO = 'ناوی_ڕیپۆزیتۆرییەکەت'; // پێویستە ئەمە بگۆڕیت بۆ ناوی ڕیپۆزیتۆرییەکەت
+        const GITHUB_TOKEN = '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'; // تۆکنەکەت لێرە جێگیر کرا
+        const WORKFLOW_FILENAME = 'build.yml'; 
 
         function showStatus(message, isError = false) {
             const statusBox = document.getElementById('statusBox');
@@ -84,8 +83,8 @@
             const appName = document.getElementById('appName').value;
             const appSource = document.getElementById('appSource').value;
 
-            if(!appName || !appSource || GITHUB_TOKEN === 'تۆکنی_گیت_هابەکەت_لێرە_دابنێ') {
-                showStatus("تکایە داتاکان پڕبکەرەوە و تۆکنی گیت هاب لەناو کۆدەکە جێگیر بکە.", true);
+            if(!appName || !appSource) {
+                showStatus("تکایە داتاکان پڕبکەرەوە.", true);
                 return;
             }
 
@@ -102,7 +101,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        ref: 'main', // ناوی برانچەکەت (ڕەنگە master بێت لای تۆ)
+                        ref: 'main', 
                         inputs: {
                             appName: appName,
                             appUrl: appSource
