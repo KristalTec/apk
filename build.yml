@@ -1,0 +1,41 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      appName:
+        description: 'App Name'
+        required: true
+        default: 'MyApp'
+      appUrl:
+        description: 'Website URL for WebView'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # لێرەدا دەتوانیت کۆدێک دابنێیت کە پڕۆژەیەکی ئامادەکراوی WebView دابگرێت
+      # و ناوەکەی و لینکەکەی بگۆڕێت بۆ ئەوانەی کە لە وێبسایتەکەوە ناردووتە
+      - name: Create Basic Android Project structure
+        run: |
+          echo "Building APK for ${{ github.event.inputs.appName }} connecting to ${{ github.event.inputs.appUrl }}"
+          # لەبەر ئەوەی دروستکردنی ئەپی تەواو پێویستی بە فایلی زۆرە،
+          # لێرەدا فایلی gradlew ڕەن دەکرێت:
+          # ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.event.inputs.appName }}-APK
+          # ڕێڕەوی ئەو فایلە دیاری بکە کە دروست دەبێت
+          path: app/build/outputs/apk/debug/app-debug.apk 
