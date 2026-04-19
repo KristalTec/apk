@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI APK Builder Pro</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--bg);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-ai {
+            background-color: #8b5cf6;
+            color: white;
+        }
+
+        .btn-ai:hover {
+            background-color: #7c3aed;
+        }
+
+        .btn-build {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-build:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #statusBox {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: rgba(0,0,0,0.2);
+            border: 1px dashed #334155;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #10b981;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>دروستکەری APK بە زیرەکی دەستکرد</h1>
+        
+        <div class="form-group">
+            <label for="appName">ناوی ئەپڵیکەیشنەکە:</label>
+            <input type="text" id="appName" placeholder="بۆ نموونە: MyKurdApp">
+        </div>
+
+        <div class="form-group">
+            <label for="appSource">بەستەری وێبسایت یان کۆدی HTML:</label>
+            <textarea id="appSource" placeholder="لێرەدا کۆدەکانت یان لینکی ئەو وێبسایتە دابنێ کە دەتەوێت ببێتە ئەپ..."></textarea>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-ai" onclick="enhanceWithAI()">✨ باشترکردن بە AI</button>
+            <button class="btn-build" onclick="triggerBuild()">🚀 دروستکردنی APK</button>
+        </div>
+
+        <div id="statusBox"></div>
+    </div>
+
+    <script>
+        // فرمانەکانی جاڤاسکریپت
+        
+        function showStatus(message, isError = false) {
+            const statusBox = document.getElementById('statusBox');
+            statusBox.style.display = 'block';
+            statusBox.style.color = isError ? '#ef4444' : '#10b981';
+            statusBox.innerHTML += `> ${message}<br>`;
+        }
+
+        function enhanceWithAI() {
+            const source = document.getElementById('appSource').value;
+            if(!source) {
+                showStatus("تکایە سەرەتا کۆد یان لینکێک دابنێ بۆ ئەوەی AI بیخوێنێتەوە.", true);
+                return;
+            }
+            showStatus("ژیری دەستکرد شیتاڵی کۆدەکان دەکات...");
+            
+            // لێرەدا دەتوانیت API ـی OpenAI یان Gemini ببەستیتەوە
+            setTimeout(() => {
+                showStatus("AI: کۆدەکانت ئامادەن و گونجێنراون بۆ قەبارەی مۆبایل.");
+            }, 1500);
+        }
+
+        async function triggerBuild() {
+            const appName = document.getElementById('appName').value;
+            const appSource = document.getElementById('appSource').value;
+
+            if(!appName || !appSource) {
+                showStatus("تکایە هەموو خانەکان پڕبکەرەوە.", true);
+                return;
+            }
+
+            document.getElementById('statusBox').innerHTML = '';
+            showStatus(`دەستپێکردنی دروستکردنی ئەپی: ${appName}...`);
+            showStatus("پەیوەندی کردن بە سێرڤەری GitHub Actions...");
+
+            /* بۆ ئەوەی ئەمە بەڕاستی ئیش بکات، دەبێت ئەم بەشە ببەستیتەوە بە GitHub REST API
+               بۆ کارپێکردنی Workflow_Dispatch لەسەر ڕیپۆزیتۆرییەکەت کە SDK ئەندرۆیدی تێدایە.
+            */
+            
+            setTimeout(() => {
+                showStatus("کۆمپایڵکردنی کۆدەکان بۆ سەر مۆبایل...");
+            }, 2000);
+
+            setTimeout(() => {
+                showStatus("سەرکەوتوو بوو! فایلی APK ئامادەیە بۆ داگرتن. ✅");
+                // لێرەدا دەتوانیت دوگمەیەک دروست بکەیت بۆ داگرتنی فایلەکە کاتێک لە سێرڤەرەوە دەگەڕێتەوە
+            }, 4500);
+        }
+    </script>
+</body>
+</html>
