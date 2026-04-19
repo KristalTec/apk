@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI APK Builder Pro</title>
     <style>
+        /* هەمان دیزاینی پێشوو */
         :root {
             --primary: #6366f1;
             --primary-hover: #4f46e5;
@@ -14,122 +15,23 @@
             --text-muted: #94a3b8;
         }
         
-        * {
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            background-color: var(--surface);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            width: 100%;
-            max-width: 600px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            font-size: 1.8rem;
-            background: linear-gradient(to right, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--bg);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-
-        button {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        .btn-ai {
-            background-color: #8b5cf6;
-            color: white;
-        }
-
-        .btn-ai:hover {
-            background-color: #7c3aed;
-        }
-
-        .btn-build {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-build:hover {
-            background-color: var(--primary-hover);
-        }
-
-        #statusBox {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            background-color: rgba(0,0,0,0.2);
-            border: 1px dashed #334155;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #10b981;
-            display: none;
-        }
+        * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { background-color: var(--surface); padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 100%; max-width: 600px; }
+        h1 { text-align: center; margin-top: 0; font-size: 1.8rem; background: linear-gradient(to right, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-muted); }
+        input[type="text"], textarea { width: 100%; padding: 0.75rem; background-color: var(--bg); border: 1px solid #334155; border-radius: 8px; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease; }
+        input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--primary); }
+        textarea { resize: vertical; min-height: 120px; }
+        .btn-group { display: flex; gap: 10px; margin-top: 1rem; }
+        button { flex: 1; padding: 0.75rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease, transform 0.1s ease; }
+        button:active { transform: scale(0.98); }
+        .btn-ai { background-color: #8b5cf6; color: white; }
+        .btn-ai:hover { background-color: #7c3aed; }
+        .btn-build { background-color: var(--primary); color: white; }
+        .btn-build:hover { background-color: var(--primary-hover); }
+        #statusBox { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; background-color: rgba(0,0,0,0.2); border: 1px dashed #334155; font-family: monospace; font-size: 0.9rem; color: #10b981; display: none; word-wrap: break-word;}
     </style>
 </head>
 <body>
@@ -143,21 +45,25 @@
         </div>
 
         <div class="form-group">
-            <label for="appSource">بەستەری وێبسایت یان کۆدی HTML:</label>
-            <textarea id="appSource" placeholder="لێرەدا کۆدەکانت یان لینکی ئەو وێبسایتە دابنێ کە دەتەوێت ببێتە ئەپ..."></textarea>
+            <label for="appSource">بەستەری وێبسایت (URL):</label>
+            <textarea id="appSource" placeholder="لینکی ئەو وێبسایتە دابنێ کە دەتەوێت ببێتە ئەپی WebView..."></textarea>
         </div>
 
         <div class="btn-group">
             <button class="btn-ai" onclick="enhanceWithAI()">✨ باشترکردن بە AI</button>
-            <button class="btn-build" onclick="triggerBuild()">🚀 دروستکردنی APK</button>
+            <button class="btn-build" onclick="triggerBuild()">🚀 ناردن بۆ سێرڤەر</button>
         </div>
 
         <div id="statusBox"></div>
     </div>
 
     <script>
-        // فرمانەکانی جاڤاسکریپت
-        
+        // --- ڕێکخستنەکانی سێرڤەر (دەبێت پڕیان بکەیتەوە) ---
+        const GITHUB_USERNAME = 'ناوی_ئەکاونتەکەت'; 
+        const GITHUB_REPO = 'ناوی_ڕیپۆزیتۆرییەکەت'; 
+        const GITHUB_TOKEN = 'تۆکنی_گیت_هابەکەت_لێرە_دابنێ'; // پێویستە لە گیت هاب دروستی بکەیت
+        const WORKFLOW_FILENAME = 'build.yml'; // ناوی فایلی ئاکشنەکە
+
         function showStatus(message, isError = false) {
             const statusBox = document.getElementById('statusBox');
             statusBox.style.display = 'block';
@@ -168,42 +74,53 @@
         function enhanceWithAI() {
             const source = document.getElementById('appSource').value;
             if(!source) {
-                showStatus("تکایە سەرەتا کۆد یان لینکێک دابنێ بۆ ئەوەی AI بیخوێنێتەوە.", true);
+                showStatus("تکایە سەرەتا لینکێک دابنێ.", true);
                 return;
             }
-            showStatus("ژیری دەستکرد شیتاڵی کۆدەکان دەکات...");
-            
-            // لێرەدا دەتوانیت API ـی OpenAI یان Gemini ببەستیتەوە
-            setTimeout(() => {
-                showStatus("AI: کۆدەکانت ئامادەن و گونجێنراون بۆ قەبارەی مۆبایل.");
-            }, 1500);
+            showStatus("AI: لینکەکە پشکنینی بۆ کرا و ئامادەیە بۆ وێب-ڤیوو (WebView).");
         }
 
         async function triggerBuild() {
             const appName = document.getElementById('appName').value;
             const appSource = document.getElementById('appSource').value;
 
-            if(!appName || !appSource) {
-                showStatus("تکایە هەموو خانەکان پڕبکەرەوە.", true);
+            if(!appName || !appSource || GITHUB_TOKEN === 'تۆکنی_گیت_هابەکەت_لێرە_دابنێ') {
+                showStatus("تکایە داتاکان پڕبکەرەوە و تۆکنی گیت هاب لەناو کۆدەکە جێگیر بکە.", true);
                 return;
             }
 
             document.getElementById('statusBox').innerHTML = '';
-            showStatus(`دەستپێکردنی دروستکردنی ئەپی: ${appName}...`);
-            showStatus("پەیوەندی کردن بە سێرڤەری GitHub Actions...");
+            showStatus(`پەیوەندی کردن بە سێرڤەری GitHub Actions بۆ ئەپی: ${appName}...`);
 
-            /* بۆ ئەوەی ئەمە بەڕاستی ئیش بکات، دەبێت ئەم بەشە ببەستیتەوە بە GitHub REST API
-               بۆ کارپێکردنی Workflow_Dispatch لەسەر ڕیپۆزیتۆرییەکەت کە SDK ئەندرۆیدی تێدایە.
-            */
-            
-            setTimeout(() => {
-                showStatus("کۆمپایڵکردنی کۆدەکان بۆ سەر مۆبایل...");
-            }, 2000);
+            try {
+                // ناردنی داواکاری بۆ سێرڤەری گیت هاب
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/actions/workflows/${WORKFLOW_FILENAME}/dispatches`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ref: 'main', // ناوی برانچەکەت (ڕەنگە master بێت لای تۆ)
+                        inputs: {
+                            appName: appName,
+                            appUrl: appSource
+                        }
+                    })
+                });
 
-            setTimeout(() => {
-                showStatus("سەرکەوتوو بوو! فایلی APK ئامادەیە بۆ داگرتن. ✅");
-                // لێرەدا دەتوانیت دوگمەیەک دروست بکەیت بۆ داگرتنی فایلەکە کاتێک لە سێرڤەرەوە دەگەڕێتەوە
-            }, 4500);
+                if (response.ok) {
+                    showStatus("✅ داواکارییەکە بە سەرکەوتوویی نێردرا بۆ سێرڤەر!");
+                    showStatus("سێرڤەر ئێستا خەریکی کۆمپایڵکردنی WebView ـەکەیە...");
+                    showStatus("دوای چەند خولەکێک بڕۆ ناو بەشی 'Actions' لە گیت هاب بۆ داگرتنی APK ـیەکە.");
+                } else {
+                    const errorData = await response.json();
+                    showStatus(`❌ کێشەیەک ڕوویدا: ${errorData.message}`, true);
+                }
+            } catch (error) {
+                showStatus(`❌ هەڵەی پەیوەندی: ${error.message}`, true);
+            }
         }
     </script>
 </body>
